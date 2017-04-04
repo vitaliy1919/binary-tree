@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="_binary_tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="binary tree.cpp" />
