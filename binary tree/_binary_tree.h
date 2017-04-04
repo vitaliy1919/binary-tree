@@ -16,22 +16,35 @@ template <typename T>
 class binaryTree
 {
 private:
-	treeNode<T> root;
-	void show_from_node(treeNode<T> *rt) const;
+	treeNode<T> *root;
+	void delete_tree_node(treeNode<T> *rt);
+	void show_node(treeNode<T> *rt) const;
 public:
-	binaryTree() :root() {}
+	binaryTree() :root(nullptr) {}
+	virtual binaryTree() { delete_tree_node(root); }
 	void addNode(const T&);
 	void show() const;
 };
 
 template<typename T>
-void binaryTree<T>::show_from_node(treeNode<T> *rt) const
+void binaryTree<T>::delete_tree_node(treeNode<T>* rt)
+{
+	if (rt)
+	{
+		delete_tree_node(rt->left);
+		delete_tree_node(rt->right);
+		delete rt;
+	}
+}
+
+template<typename T>
+void binaryTree<T>::show_node(treeNode<T> *rt) const
 {
 	if (rt)
 	{
 		cout << rt->data << ' ';
-		show_from_node(root->left);
-		show_from_node(root->right);
+		show_from_node(rt->left);
+		show_from_node(rt->right);
 	}
 }
 
@@ -40,7 +53,7 @@ void binaryTree<T>::addNode(const T & d)
 {
 	if (root)
 	{
-		treeNode<T> *x = root, *t = new Node(d);
+		treeNode<T> *x = root, *t = new treeNode<T>(d);
 		treeNode<T> *y = x;
 		while (x)
 		{
@@ -56,7 +69,7 @@ void binaryTree<T>::addNode(const T & d)
 			y->right = t;
 	}
 	else
-		root = new treeNode(d);
+		root = new treeNode<T>(d);
 }
 
 template<typename T>
