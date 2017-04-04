@@ -7,32 +7,42 @@ struct treeNode
 {
 	treeNode* left;
 	treeNode* right;
+	treeNode* parent;
 	T data;
-	treeNode(const T& d,treeNode* l=nullptr,treeNode* r=nullptr):data(d),left(l),right(r){ }
+	treeNode(const T& d,treeNode* l=nullptr,treeNode* r=nullptr,treeNode* p=nullptr):data(d),left(l),right(r),parent(p){ }
 };
-
 //tree class
 template <typename T>
+//using treeNode<T> = treeNode<T>;
 class binaryTree
 {
 private:
 	treeNode<T> *root;
-	void delete_tree_node(treeNode<T> *rt);
+	void delete_tree(treeNode<T> *rt);
 	void show_node(treeNode<T> *rt) const;
+	void transplant(treeNode<T>* u, treeNode<T>* v);
+	treeNode<T>* min_node(treeNode<T> *rt) const;
+	treeNode<T>* max_node(treeNode<T> *rt) const;
+	treeNode<T>* find_node(const T& it,treeNode<T> *rt);
+	void delete_node(treeNode<T> *u);
 public:
 	binaryTree() :root(nullptr) {}
-	virtual binaryTree() { delete_tree_node(root); }
-	void addNode(const T&);
+	virtual ~binaryTree() { delete_tree(root); }
+	void add_node(const T&);
+	//treeNode<T>* find(const T& it);
+	void delete_node(const T& key);
 	void show() const;
+	T min() const;
+	T max() const;
 };
 
 template<typename T>
-void binaryTree<T>::delete_tree_node(treeNode<T>* rt)
+void binaryTree<T>::delete_tree(treeNode<T>* rt)
 {
 	if (rt)
 	{
-		delete_tree_node(rt->left);
-		delete_tree_node(rt->right);
+		delete_tree(rt->left);
+		delete_tree(rt->right);
 		delete rt;
 	}
 }
@@ -43,13 +53,91 @@ void binaryTree<T>::show_node(treeNode<T> *rt) const
 	if (rt)
 	{
 		cout << rt->data << ' ';
-		show_from_node(rt->left);
-		show_from_node(rt->right);
+		show_node(rt->left);
+		show_node(rt->right);
 	}
 }
 
 template<typename T>
-void binaryTree<T>::addNode(const T & d)
+void binaryTree<T>::transplant(treeNode<T>* u, treeNode<T>* v)
+{
+	if (!u->parent)
+		root = v;
+	else if (u->parent->left == u)
+		u->parent->left = v;
+	else u->parent->right = v;
+	if (v)
+		v->parent = u->parent;
+	delete u;
+}
+
+template<typename T>
+treeNode<T> * binaryTree<T>::min_node(treeNode<T>* rt) const
+{
+	if (rt)
+	{
+		treeNode<T> *x = rt;
+		while (x->left)
+			x = x->left;
+		return x;
+	}
+	return nullptr;
+}
+
+template<typename T>
+treeNode<T> * binaryTree<T>::max_node(treeNode<T> * rt) const
+{
+	if (rt)
+	{
+		treeNode<T>* x = root;
+		while (x->right)
+			x = x->right;
+		return x;
+	}
+	return nullptr;
+}
+
+template<typename T>
+treeNode<T>* binaryTree<T>::find_node(const T & it, treeNode<T>* rt)
+{
+	if (rt)
+	{
+		if (rt->data == it)
+			return rt;
+		else if (rt->data > it)
+			return find_node(it, rt->left);
+		else
+			return find_node(it, rt->right);
+	}
+	return nullptr;
+}
+
+template<typename T>
+void binaryTree<T>::delete_node(treeNode<T>* u)
+{
+	if (!u)
+		return;
+	if (!u->left)
+		transplant(u, u->right);
+	else if (!u->right)
+		transplant(u, u->left);
+	else
+	{
+		treeNode<T> *y = min_node(u->right);
+		T temp = y->data;
+		//if (y->parent != u)
+		//{
+			transplant(y, y->right);
+			u->data = temp;
+			//y->right=u
+		//}
+	}
+}
+
+
+
+template<typename T>
+void binaryTree<T>::add_node(const T & d)
 {
 	if (root)
 	{
@@ -63,6 +151,7 @@ void binaryTree<T>::addNode(const T & d)
 			else
 				x = x->right;
 		}
+		t->parent = y;
 		if (y->data > d)
 			y->left = t;
 		else
@@ -72,9 +161,34 @@ void binaryTree<T>::addNode(const T & d)
 		root = new treeNode<T>(d);
 }
 
+//template<typename T>
+//treeNode<T>* binaryTree<T>::find(const T & it)
+//{
+//	
+//}
+
+template<typename T>
+void binaryTree<T>::delete_node(const T & key)
+{
+	treeNode<T> *u = find_node(key, root);
+	delete_node(u);
+}
+
 template<typename T>
 void binaryTree<T>::show() const
 {
-	show_from_node(root);
+	show_node(root);
 	cout << endl;
+}
+
+template<typename T>
+T binaryTree<T>::min() const
+{
+	return min_node(root)->data;
+}
+
+template<typename T>
+inline T binaryTree<T>::max() const
+{
+	return max_node(root)->data;
 }
