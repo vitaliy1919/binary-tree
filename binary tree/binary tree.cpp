@@ -26,10 +26,11 @@ int main()
 	tr.add_node(13);
 	cout << endl;
 	tr.show();
-	int n;
+	/*int n;
 	cin >> n;
 	tr.delete_node(n);
-	tr.show();
+	tr.show();*/
+	cout << "height of tree: " << tr.height() << endl << "Number of nodes: " << tr.size() << endl;
 	//cout << tr.min() << ' '<<tr.max()<<endl;
 	system("pause");
     return 0;

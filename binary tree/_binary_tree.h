@@ -25,13 +25,18 @@ private:
 	treeNode<T>* max_node(treeNode<T> *rt) const;
 	treeNode<T>* find_node(const T& it,treeNode<T> *rt);
 	void delete_node(treeNode<T> *u);
+	int height_node(treeNode<T> *rt) const;
+	int node_count(treeNode<T> *rt) const;
 public:
 	binaryTree() :root(nullptr) {}
 	virtual ~binaryTree() { delete_tree(root); }
 	void add_node(const T&);
+	treeNode<T>* get_root() const { return root; }
 	//treeNode<T>* find(const T& it);
 	void delete_node(const T& key);
 	void show() const;
+	int size() const { return node_count(root); }
+	int height() const { return height_node(root); }
 	T min() const;
 	T max() const;
 };
@@ -132,6 +137,27 @@ void binaryTree<T>::delete_node(treeNode<T>* u)
 			//y->right=u
 		//}
 	}
+}
+
+template<typename T>
+int binaryTree<T>::height_node(treeNode<T>* rt) const
+{
+	if (rt)
+	{
+		int h1 = height_node(rt->left), h2 = height_node(rt->right);
+		return (h1 > h2 ? h1 : h2) + 1;
+	}
+	return 0;
+}
+
+template<typename T>
+int binaryTree<T>::node_count(treeNode<T>* rt) const
+{
+	if (rt)
+	{
+		return node_count(rt->left) + node_count(rt->right) + 1;
+	}
+	return 0;
 }
 
 
