@@ -1,6 +1,9 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
+#include <stack>
 using std::cout;
+using std::ostream;
+using std::endl;
 //struct for tree node
 template <typename T>
 struct treeNode
@@ -8,9 +11,19 @@ struct treeNode
 	treeNode* left;
 	treeNode* right;
 	treeNode* parent;
+	int level;
 	T data;
-	treeNode(const T& d,treeNode* l=nullptr,treeNode* r=nullptr,treeNode* p=nullptr):data(d),left(l),right(r),parent(p){ }
+	treeNode(const T& d,int lev=0,treeNode* l=nullptr,treeNode* r=nullptr,treeNode* p=nullptr):data(d),level(lev),left(l),right(r),parent(p){ }
+	template <typename F>
+	friend ostream& operator<<(ostream& os, const treeNode<F>* a);
 };
+template<typename F>
+ostream & operator<<(ostream & os, const treeNode<F>* a)
+{
+	os << '(' << a->data << ',' << a->level << ')';
+	return os;
+}
+
 //tree class
 template <typename T>
 //using treeNode<T> = treeNode<T>;
@@ -20,6 +33,7 @@ private:
 	treeNode<T> *root;
 	void delete_tree(treeNode<T> *rt);
 	void show_node(treeNode<T> *rt) const;
+	void show_node_reverse(treeNode<T> *rt) const;
 	void transplant(treeNode<T>* u, treeNode<T>* v);
 	treeNode<T>* min_node(treeNode<T> *rt) const;
 	treeNode<T>* max_node(treeNode<T> *rt) const;
@@ -35,6 +49,9 @@ public:
 	//treeNode<T>* find(const T& it);
 	void delete_node(const T& key);
 	void show() const;
+	void show_stack() const;
+	void show_reverse() const;
+	void show_reverse_stack() const;
 	int size() const { return node_count(root); }
 	int height() const { return height_node(root); }
 	T min() const;
@@ -49,17 +66,6 @@ void binaryTree<T>::delete_tree(treeNode<T>* rt)
 		delete_tree(rt->left);
 		delete_tree(rt->right);
 		delete rt;
-	}
-}
-
-template<typename T>
-void binaryTree<T>::show_node(treeNode<T> *rt) const
-{
-	if (rt)
-	{
-		cout << rt->data << ' ';
-		show_node(rt->left);
-		show_node(rt->right);
 	}
 }
 
@@ -178,6 +184,7 @@ void binaryTree<T>::add_node(const T & d)
 				x = x->right;
 		}
 		t->parent = y;
+		t->level = y->level + 1;
 		if (y->data > d)
 			y->left = t;
 		else
@@ -201,9 +208,85 @@ void binaryTree<T>::delete_node(const T & key)
 }
 
 template<typename T>
+void binaryTree<T>::show_node(treeNode<T> *rt) const
+{
+	if (rt)
+	{
+		cout << rt << ' ';
+		show_node(rt->left);
+		show_node(rt->right);
+	}
+}
+
+template<typename T>
+void binaryTree<T>::show_node_reverse(treeNode<T>* rt) const
+{
+	if (rt)
+	{
+		show_node_reverse(rt->left);
+		show_node_reverse(rt->right);
+		cout << rt << ' ';
+	}
+}
+
+template<typename T>
 void binaryTree<T>::show() const
 {
 	show_node(root);
+	cout << endl;
+}
+
+template<typename T>
+void binaryTree<T>::show_stack() const
+{
+	stack<treeNode<T>*> nodes;
+	nodes.push(root);
+	while (!nodes.empty())
+	{
+		treeNode<T>* top = nodes.top(); nodes.pop();
+		if (top->right)
+			nodes.push(top->right);
+		if (top->left)
+			nodes.push(top->left);
+		cout << top << ' ';
+	}
+	cout << endl;
+}
+
+template<typename T>
+void binaryTree<T>::show_reverse() const
+{
+	show_node_reverse(root);
+	cout << endl;
+}
+
+template<typename T>
+void binaryTree<T>::show_reverse_stack() const
+{
+	stack<pair<treeNode<T>*,bool>> nodes;
+	nodes.push({ root,false });
+	while (!nodes.empty())
+	{
+		treeNode<T>* x = nodes.top().first;
+		if (nodes.top().second)
+		{
+			cout << nodes.top().first << ' ';
+			nodes.pop();
+		}
+		else
+		{
+			nodes.top().second = true;
+			if (x->right)
+				nodes.push({ x->right,false });
+			if (x->left)
+				nodes.push({ x->left,false });
+			if (!x->left || !x->right)
+			{
+				cout << x << ' ';
+				nodes.pop();
+			}
+		}
+	}
 	cout << endl;
 }
 
@@ -218,3 +301,5 @@ inline T binaryTree<T>::max() const
 {
 	return max_node(root)->data;
 }
+
+
