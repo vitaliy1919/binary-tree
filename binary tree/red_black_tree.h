@@ -412,7 +412,7 @@ void RedBlackTree<T>::insertElement(const T &element)
 	fixAfterInsert(insert_node);
 }
 
-template<typename T>13
+template<typename T>
 void RedBlackTree<T>::deleteElement(const T & key)
 {
 	Node *node_to_delete = search(root_, key);

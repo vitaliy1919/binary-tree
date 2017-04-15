@@ -1,101 +1,25 @@
 digraph structs{
-node0 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>65</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node1 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>32</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node2 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>21</B> >,style=filled,fillcolor=Red]
-node3 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>8</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node4 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>6</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node5 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>2</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node6 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>7</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node7 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>16</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node8 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>12</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node9 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>17</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node10 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>28</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node11 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>24</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node12 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>23</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node13 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>29</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node14 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>54</B> >,style=filled,fillcolor=Red]
-node15 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>35</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node16 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>32</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node17 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>44</B> >,style=filled,fillcolor=Red]
-node18 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>36</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node19 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>39</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node20 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>49</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node21 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>57</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node22 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>56</B> >,style=filled,fillcolor=Red]
-node23 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>55</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node24 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>54</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node25 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>56</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node26 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>62</B> >,style=filled,fillcolor=Red]
-node27 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>59</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node28 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>63</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node29 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>62</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node30 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>83</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node31 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>77</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node32 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>67</B> >,style=filled,fillcolor=Red]
-node33 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>65</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node34 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>66</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node35 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>73</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node36 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>71</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node37 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>76</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node38 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>79</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node39 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>91</B> >,style=filled,fillcolor=Red]
-node40 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>85</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node41 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>84</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node42 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>90</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node43 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>95</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node44 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>91</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node45 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>91</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
-node46 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>96</B> >,style=filled,fillcolor=Red]
-node47 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>95</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
-node48 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>97</B> >,style=filled,fillcolor=Black,fontcolor=white]
-node49 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>99</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
+node0 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Black,fontcolor=white]
+node1 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Black,fontcolor=white]
+node2 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
+node3 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
+node4 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Black,fontcolor=white]
+node5 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Red]
+node6 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
+node7 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
+node8 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Red]
+node9 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Black,fontcolor=white]
+node10 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,fillcolor=Black,fontcolor=white]
+node11 [shape=circle,fontsize=20,fontname="Calibri",label=< <B>1</B> >,style=filled,color=green,penwidth=5,fillcolor=Red]
 node0->node1
-node0->node30
+node0->node4
 node1->node2
-node1->node14
-node2->node3
-node2->node10
-node3->node4
-node3->node7
+node1->node3
 node4->node5
-node4->node6
-node7->node8
-node7->node9
+node4->node8
+node5->node6
+node5->node7
+node8->node9
+node8->node10
 node10->node11
-node10->node13
-node11->node12
-node14->node15
-node14->node21
-node15->node16
-node15->node17
-node17->node18
-node17->node20
-node18->node19
-node21->node22
-node21->node26
-node22->node23
-node22->node25
-node23->node24
-node26->node27
-node26->node28
-node28->node29
-node30->node31
-node30->node39
-node31->node32
-node31->node38
-node32->node33
-node32->node35
-node33->node34
-node35->node36
-node35->node37
-node39->node40
-node39->node43
-node40->node41
-node40->node42
-node43->node44
-node43->node46
-node44->node45
-node46->node47
-node46->node48
-node48->node49
 }
