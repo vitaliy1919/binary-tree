@@ -21,12 +21,18 @@ public:
 	RedBlackTree() { nil_ = new Node(); root_ = nil_; }
 	void insertElement(const T& element);
 	void showTree() { showTree(root_, 0); cout << endl; }
+	int getNumberOfLeaves() const { return getNumberOfLeaves(root_); }
+	int getTreeHeight() const { return getTreeHeight(root_); }
 	void deleteElement(const T& key);
 	void writeTreeForVisualisation() const;
 	~RedBlackTree();
 private:
 	Node *root_, *nil_;
 	void deleteRedBlackTree(Node *start_node);
+	RedBlackTree& operator=(const RedBlackTree& tr) { return *this; }
+	RedBlackTree(const RedBlackTree& tr) { return *this; }
+	int getNumberOfLeaves(Node *start_node) const;
+	int getTreeHeight(Node *start_node) const;
 	Node *minNode(Node *start_node);
 	Node *maxNode(Node *start_node);
 	void transplantRB(Node *u, Node *v);
@@ -50,6 +56,36 @@ void RedBlackTree<T>::deleteRedBlackTree(Node * start_node)
 		deleteRedBlackTree(start_node->right);
 		delete start_node;
 	}
+}
+template<typename T>
+int RedBlackTree<T>::getNumberOfLeaves(Node * start_node) const
+{
+	if (start_node)
+	{
+		if (start_node->right == nil_ && start_node->left == nil_)
+			return 1;
+		int left_leaves = 0, right_leaves = 0;
+		if (start_node->left != nil_)
+			left_leaves = getNumberOfLeaves(start_node->left);
+		if (start_node->right != nil_)
+			right_leaves = getNumberOfLeaves(start_node->right);
+		return left_leaves + right_leaves;
+	}
+	return 0;
+}
+template<typename T>
+int RedBlackTree<T>::getTreeHeight(Node * start_node) const
+{
+	if (start_node != nil_)
+	{
+		int left_height = 0, right_height = 0;
+		if (start_node->left != nil_)
+			left_height = getTreeHeight(start_node->left);
+		if (start_node->right != nil_)
+			right_height = getTreeHeight(start_node->right);
+		return (left_height > right_height ? left_height : right_height) + 1;
+	}
+	return 0;
 }
 //
 template<typename T>
@@ -280,8 +316,10 @@ void RedBlackTree<T>::writeTreeNodeInformation(ostream & os,Node* start_node) co
 	{
 		/*os << "node" << node_number << " [shape=circle,fontsize=20,label=\"" << start_node->data << "\",style=filled" <<
 			(start_node->color == Node::Black ? ",fillcolor=Black,fontcolor=red]" : ",fillcolor=Red]") << endl;*/
-		os << "node" << node_number << " [shape=circle,fontsize=20,fontname=\"Calibri\",label=< <B>" << start_node->data << "</B> >,style=filled" <<
-			(start_node->color == Node::Black ? ",fillcolor=Black,fontcolor=white]" : ",fillcolor=Red]") << endl;
+		os << "node" << node_number << " [shape=circle,fontsize=20,fontname=\"Calibri\",label=< <B>" << start_node->data << "</B> >,style=filled";
+		if (start_node->left == nil_ && start_node->right == nil_)
+			os << ",color=green,penwidth=5";
+		os<<(start_node->color == Node::Black ? ",fillcolor=Black,fontcolor=white]" : ",fillcolor=Red]") << endl;
 		start_node->number = node_number;
 		if (start_node->left != nil_)
 		{
@@ -374,7 +412,7 @@ void RedBlackTree<T>::insertElement(const T &element)
 	fixAfterInsert(insert_node);
 }
 
-template<typename T>
+template<typename T>13
 void RedBlackTree<T>::deleteElement(const T & key)
 {
 	Node *node_to_delete = search(root_, key);

@@ -115,6 +115,8 @@ int main()
 		}
 		case 'v':
 		{
+			cout <<"Number of leaves: "<< RBtree.getNumberOfLeaves() << endl;
+			cout << "Tree height: " << RBtree.getTreeHeight() << endl;
 			visualize(RBtree);
 			break;
 		}
